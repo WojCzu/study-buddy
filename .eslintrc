@@ -6,7 +6,9 @@
     "prettier"
   ],
   "plugins": ["prettier"],
-  "rules": { "prettier/prettier": ["error", { "singleQuote": true }] },
+  "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true, "endOfLine": "auto" }]
+  },
   "env": {
     "browser": true,
     "node": true,
