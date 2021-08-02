@@ -23,45 +23,45 @@ export const Wrapper = styled.li`
 
     background-color: ${({ theme }) => theme.colors.lightGrey};
   }
+`;
 
-  button {
-    align-self: flex-start;
+export const StyledInfo = styled.div`
+  margin-left: 15px;
+  color: ${({ theme }) => theme.colors.darkGrey};
+
+  p {
+    margin: 0;
+  }
+
+  p:first-child {
+    display: flex;
+    align-items: center;
+
+    font-weight: bold;
+    font-size: ${({ theme }) => theme.fontSize.l};
+  }
+
+  p:last-child {
+    font-size: ${({ theme }) => theme.fontSize.s};
   }
 `;
 
-export const UserName = styled.p`
-  margin: 0;
-  font-weight: bold;
-  font-size: ${({ theme }) => theme.fontSize.l};
-`;
-
-export const Attendance = styled.p`
-  margin: 0;
-  font-size: ${({ theme }) => theme.fontSize.s};
-`;
-
-export const UserInfo = styled.div`
-  margin-left: 15px;
-  margin-right: 5px;
-  color: ${({ theme }) => theme.colors.darkGrey};
-`;
-
-export const Average = styled.div`
+export const StyledAverage = styled.div`
   width: 34px;
   height: 34px;
 
   display: grid;
   place-items: center;
 
-  font-size: ${({ theme }) => theme.fontSize.m};
+  font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: bold;
   color: ${({ theme }) => theme.colors.white};
   border-radius: 50%;
 
-  background-color: ${({ theme, children }) => {
+  background-color: ${({ theme, value }) => {
     const { colors } = theme;
-    if (children < 3) return colors.error;
-    if (children < 4) return colors.warning;
+    if (value < 3) return colors.error;
+    if (value < 4) return colors.warning;
     return colors.success;
   }};
 `;
