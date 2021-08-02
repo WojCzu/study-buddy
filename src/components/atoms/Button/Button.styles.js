@@ -4,8 +4,8 @@ export const StyledButton = styled.button`
   display: grid;
   place-items: center;
 
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
 
   border-radius: 50%;
   border: none;
