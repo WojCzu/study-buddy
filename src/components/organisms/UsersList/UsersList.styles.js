@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 100%;
   max-width: 500px;
-  margin: 40px 0;
+  margin: 40px 25px;
   padding: 40px 30px;
 
   border-radius: 25px;
@@ -16,4 +16,9 @@ export const StyledList = styled.ul`
   padding: 0;
 
   list-style: none;
+`;
+
+export const StyledTitle = styled.h1`
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  color: ${({ theme }) => theme.colors.darkGrey};
 `;
