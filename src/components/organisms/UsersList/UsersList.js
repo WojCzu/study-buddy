@@ -3,6 +3,7 @@ import { users as usersData } from 'data/users';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Wrapper, StyledList, StyledTitle } from './UsersList.styles';
 import FormField from 'components/molecules/FormField/FormField';
+import { Button } from 'components/atoms/Button/Button';
 
 const UsersList = () => {
   const [users, setUsers] = useState(usersData);
@@ -24,7 +25,7 @@ const UsersList = () => {
           type="number"
         />
         <FormField label="Average" id="average" name="average" type="number" />
-        <button>Add</button>
+        <Button>Add</Button>
       </Wrapper>
       <Wrapper>
         <StyledTitle>Students list</StyledTitle>
