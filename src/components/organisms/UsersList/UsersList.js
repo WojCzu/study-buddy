@@ -17,6 +17,14 @@ const UsersList = () => {
       <Wrapper>
         <StyledTitle>Add new student</StyledTitle>
         <FormField label="Name" id="name" name="name" />
+        <FormField
+          label="Attendance"
+          id="attendance"
+          name="attendance"
+          type="number"
+        />
+        <FormField label="Average" id="average" name="average" type="number" />
+        <button>Add</button>
       </Wrapper>
       <Wrapper>
         <StyledTitle>Students list</StyledTitle>

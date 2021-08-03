@@ -13,4 +13,14 @@ export const Input = styled.input`
     outline: none;
     box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
   }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 `;
