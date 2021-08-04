@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'components/atoms/Button/Button';
+import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import { Wrapper, StyledInfo, StyledAverage } from './UsersListItem.styles';
 
 const UsersListItem = ({
@@ -9,11 +9,11 @@ const UsersListItem = ({
 }) => {
   return (
     <Wrapper>
-      <StyledAverage value={average}>{average.toFixed(1)}</StyledAverage>
+      <StyledAverage value={average}>{average}</StyledAverage>
       <StyledInfo>
         <p>
           {name}
-          <Button onClick={() => deleteUser(name)} />
+          <DeleteButton onClick={() => deleteUser(name)} />
         </p>
         <p>attendance: {attendance}%</p>
       </StyledInfo>
@@ -24,8 +24,8 @@ const UsersListItem = ({
 UsersListItem.propTypes = {
   userData: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    attendance: PropTypes.number,
-    average: PropTypes.number.isRequired,
+    attendance: PropTypes.string,
+    average: PropTypes.string.isRequired,
   }),
 };
 
