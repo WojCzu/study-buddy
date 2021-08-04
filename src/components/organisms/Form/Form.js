@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  Wrapper,
-  StyledTitle,
-} from 'components/organisms/UsersList/UsersList.styles';
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
+import { Title } from 'components/atoms/Title/Title';
+import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 
 const Form = ({ handleAddUser, formValues, handleInputChange }) => (
-  <Wrapper as="form" onSubmit={handleAddUser}>
-    <StyledTitle>Add new student</StyledTitle>
+  <ViewWrapper as="form" onSubmit={handleAddUser}>
+    <Title>Add new student</Title>
     <FormField
       label="Name"
       id="name"
@@ -31,7 +29,7 @@ const Form = ({ handleAddUser, formValues, handleInputChange }) => (
       onChange={handleInputChange}
     />
     <Button type="submit">Add</Button>
-  </Wrapper>
+  </ViewWrapper>
 );
 
 export default Form;

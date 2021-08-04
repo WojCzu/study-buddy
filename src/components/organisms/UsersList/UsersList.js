@@ -1,10 +1,12 @@
 import React from 'react';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { Wrapper, StyledList, StyledTitle } from './UsersList.styles';
+import { StyledList } from './UsersList.styles';
+import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
+import { Title } from 'components/atoms/Title/Title';
 
 const UsersList = ({ users, deleteUser }) => (
-  <Wrapper>
-    <StyledTitle>Students list</StyledTitle>
+  <ViewWrapper>
+    <Title>Students list</Title>
     <StyledList>
       {users.map((userData) => (
         <UsersListItem
@@ -14,7 +16,7 @@ const UsersList = ({ users, deleteUser }) => (
         />
       ))}
     </StyledList>
-  </Wrapper>
+  </ViewWrapper>
 );
 
 export default UsersList;
