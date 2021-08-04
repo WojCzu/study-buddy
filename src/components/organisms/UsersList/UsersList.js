@@ -5,13 +5,15 @@ import { Wrapper, StyledList, StyledTitle } from './UsersList.styles';
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 
+const initialFormState = {
+  name: '',
+  attendance: '',
+  average: '',
+};
+
 const UsersList = () => {
   const [users, setUsers] = useState(usersData);
-  const [formValues, setFormValues] = useState({
-    name: '',
-    attendance: '',
-    average: '',
-  });
+  const [formValues, setFormValues] = useState(initialFormState);
 
   const deleteUser = (name) => {
     const filteredUsers = users.filter((user) => user.name !== name);
@@ -21,9 +23,21 @@ const UsersList = () => {
   const handleInputChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
+
+  const handleAddUser = (e) => {
+    e.preventDefault();
+    const newUser = {
+      name: formValues.name,
+      attendance: formValues.attendance,
+      average: formValues.average,
+    };
+    setUsers([newUser, ...users]);
+    setFormValues(initialFormState);
+  };
+
   return (
     <>
-      <Wrapper>
+      <Wrapper as="form" onSubmit={handleAddUser}>
         <StyledTitle>Add new student</StyledTitle>
         <FormField
           label="Name"
@@ -36,7 +50,6 @@ const UsersList = () => {
           label="Attendance"
           id="attendance"
           name="attendance"
-          type="number"
           value={formValues.attendance}
           onChange={handleInputChange}
         />
@@ -44,11 +57,10 @@ const UsersList = () => {
           label="Average"
           id="average"
           name="average"
-          type="number"
           value={formValues.average}
           onChange={handleInputChange}
         />
-        <Button>Add</Button>
+        <Button type="submit">Add</Button>
       </Wrapper>
       <Wrapper>
         <StyledTitle>Students list</StyledTitle>

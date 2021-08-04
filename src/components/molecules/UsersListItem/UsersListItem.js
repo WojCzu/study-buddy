@@ -9,7 +9,7 @@ const UsersListItem = ({
 }) => {
   return (
     <Wrapper>
-      <StyledAverage value={average}>{average.toFixed(1)}</StyledAverage>
+      <StyledAverage value={average}>{average}</StyledAverage>
       <StyledInfo>
         <p>
           {name}
@@ -24,8 +24,8 @@ const UsersListItem = ({
 UsersListItem.propTypes = {
   userData: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    attendance: PropTypes.number,
-    average: PropTypes.number.isRequired,
+    attendance: PropTypes.string,
+    average: PropTypes.string.isRequired,
   }),
 };
 
