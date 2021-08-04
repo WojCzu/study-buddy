@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
   height: 100vh;
-  width: 110px;
+  width: 100%;
   padding: 20px 0;
 
   display: flex;
@@ -28,7 +28,7 @@ export const StyledLink = styled(Link)`
 
 export const Logo = styled.div`
   width: 100%;
-  padding: 13px 20px;
+  padding: 13px 20px 13px 50%;
   margin-bottom: 30px;
 
   background-color: ${({ theme }) => theme.colors.darkGrey};

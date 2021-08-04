@@ -5,7 +5,7 @@ import UsersList from 'components/organisms/UsersList/UsersList';
 
 const Dashboard = ({ users, deleteUser }) => (
   <ViewWrapper>
-    <Title>Add new student</Title>
+    <Title>Student List</Title>
     <UsersList users={users} deleteUser={deleteUser} />
   </ViewWrapper>
 );

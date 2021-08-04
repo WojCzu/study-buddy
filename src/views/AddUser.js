@@ -4,7 +4,7 @@ import { Button } from 'components/atoms/Button/Button';
 import { Title } from 'components/atoms/Title/Title';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 
-const Form = ({ handleAddUser, formValues, handleInputChange }) => (
+const AddUser = ({ handleAddUser, formValues, handleInputChange }) => (
   <ViewWrapper as="form" onSubmit={handleAddUser}>
     <Title>Add new student</Title>
     <FormField
@@ -32,4 +32,4 @@ const Form = ({ handleAddUser, formValues, handleInputChange }) => (
   </ViewWrapper>
 );
 
-export default Form;
+export default AddUser;

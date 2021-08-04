@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const ViewWrapper = styled.div`
   width: 100%;
   max-width: 500px;
-  margin: 40px 25px;
   padding: 40px 30px;
+  margin: 20px;
 
   border-radius: 25px;
   background-color: ${({ theme }) => theme.colors.white};
