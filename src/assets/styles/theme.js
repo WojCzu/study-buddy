@@ -9,6 +9,7 @@ export const theme = {
     error: '#CB8581',
     warning: '#E1D888',
     lightPurple: '#ECEFF7',
+    darkPurple: '#DFE2E8',
   },
   fontSize: {
     xl: '24px',
