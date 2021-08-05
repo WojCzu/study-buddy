@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
@@ -14,16 +14,39 @@ export const StyledNav = styled.nav`
   border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
   padding: 5px;
   margin-bottom: 5px;
   margin-right: 15px;
+
+  position: relative;
 
   font-weight: bold;
   text-decoration: none;
   font-size: ${({ theme }) => theme.fontSize.m};
   color: ${({ theme }) => theme.colors.darkGrey};
   cursor: pointer;
+
+  &.active {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    content: '';
+    width: 15px;
+    height: 3px;
+
+    position: absolute;
+    top: 50%;
+    right: -15px;
+
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    transform: translateY(-50%);
+    background-color: ${({ theme }) => theme.colors.darkPurple};
+  }
 `;
 
 export const Logo = styled.div`
