@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { Title } from 'components/atoms/Title/Title';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
+import { UserShape } from 'types';
 
 const AddUser = ({ handleAddUser, formValues, handleInputChange }) => (
   <ViewWrapper as="form" onSubmit={handleAddUser}>
@@ -31,5 +33,11 @@ const AddUser = ({ handleAddUser, formValues, handleInputChange }) => (
     <Button type="submit">Add</Button>
   </ViewWrapper>
 );
+
+AddUser.propTypes = {
+  handleAddUser: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  formValues: PropTypes.shape(UserShape),
+};
 
 export default AddUser;
