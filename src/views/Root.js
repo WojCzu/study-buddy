@@ -8,6 +8,7 @@ import AddUser from './AddUser';
 import Dashboard from './Dashboard';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import UsersProvider from 'providers/UsersProvider';
+
 const Root = () => {
   return (
     <Router>
