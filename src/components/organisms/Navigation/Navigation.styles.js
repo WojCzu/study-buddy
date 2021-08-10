@@ -6,6 +6,9 @@ export const StyledNav = styled.nav`
   width: 100%;
   padding: 20px 0;
 
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+
   display: flex;
   flex-direction: column;
   align-items: flex-end;

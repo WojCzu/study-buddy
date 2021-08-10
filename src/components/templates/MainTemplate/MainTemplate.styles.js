@@ -7,7 +7,8 @@ export const Wrapper = styled.div`
   padding: 0;
 
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 150px 4fr 3fr;
+  grid-template-rows: 90px 1fr;
 
   background-color: ${({ theme }) => theme.colors.lightGrey};
 `;
