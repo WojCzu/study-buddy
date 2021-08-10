@@ -42,7 +42,10 @@ FormField.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   type: PropTypes.string,
+  value: PropTypes.string,
+  checked: PropTypes.bool,
 };
 
 export default FormField;

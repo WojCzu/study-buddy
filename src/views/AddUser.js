@@ -64,7 +64,6 @@ const AddUser = () => {
         name="consent"
         type="checkbox"
         checked={formValues.consent}
-        value={formValues.consent}
         onChange={handleToggleConsent}
       />
       <Button type="submit">Add</Button>
