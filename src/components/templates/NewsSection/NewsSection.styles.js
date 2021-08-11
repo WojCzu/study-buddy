@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 
   overflow-y: auto;
   padding: 50px;
