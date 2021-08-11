@@ -6,6 +6,8 @@ export const Wrapper = styled.div`
   margin: 0;
   padding: 0;
 
+  overflow-y: hidden;
+
   display: grid;
   grid-template-columns: 150px 4fr 3fr;
   grid-template-rows: 90px 1fr;
