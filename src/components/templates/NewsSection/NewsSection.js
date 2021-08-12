@@ -9,16 +9,8 @@ import {
   ContentWrapper,
 } from './NewsSection.styles';
 
-const NewsSection = () => {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    axios
-      .post(
-        'https://graphql.datocms.com/',
-        {
-          query: `
-        {
+export const query = `
+         {
           allArticles {
             id
             title
@@ -28,8 +20,19 @@ const NewsSection = () => {
               url
             }
           }
-        }        
-        `,
+        }
+      `;
+
+const NewsSection = () => {
+  const [articles, setArticles] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    axios
+      .post(
+        'https://graphql.datocms.com/',
+        {
+          query,
         },
         {
           headers: {
@@ -40,7 +43,9 @@ const NewsSection = () => {
       .then(({ data: { data } }) => {
         setArticles(data.allArticles);
       })
-      .catch((error) => console.error(error));
+      .catch(() => {
+        setError(`Sorry, we couldn't load articles for you`);
+      });
   }, []);
 
   return (
@@ -61,7 +66,7 @@ const NewsSection = () => {
           </ArticleWrapper>
         ))
       ) : (
-        <p>Loading...</p>
+        <NewsSectionHeader>{error ? error : 'Loading...'}</NewsSectionHeader>
       )}
     </Wrapper>
   );
