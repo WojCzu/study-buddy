@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { StyledList } from './UsersList.styles';
-import { UsersContext } from 'providers/UsersProvider';
 
-const UsersList = () => {
-  const { users } = useContext(UsersContext);
+const UsersList = ({ users = [] }) => {
   return (
     <StyledList>
       {users.map((userData) => (

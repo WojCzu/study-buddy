@@ -50,5 +50,8 @@
     "lint-staged": "^10.5.3",
     "msw": "^0.34.0",
     "prettier": "^2.2.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
