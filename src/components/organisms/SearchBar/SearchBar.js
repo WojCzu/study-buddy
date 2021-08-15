@@ -1,28 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import debounce from 'lodash.debounce';
+import { useCombobox } from 'downshift';
 import { Input } from 'components/atoms/Input/Input';
+import { useStudents } from 'hooks/useStudents';
+import { wrapInput } from 'helpers/wrapInput';
+
 import {
   SearchBarWrapper,
   SearchResults,
   SearchWrapper,
   StatusInfo,
+  SearchResultsItem,
 } from './SearchBar.styles';
-import { useStudents } from 'hooks/useStudents';
 
 export const SearchBar = () => {
-  const [searchPhrase, setSearchPhrase] = useState('');
-  const [matchingStudents, setMatchingStudents] = useState('');
+  const [matchingStudents, setMatchingStudents] = useState([]);
   const { findStudents } = useStudents();
 
-  const getMatchingStudents = debounce(async (e) => {
-    const { students } = await findStudents(searchPhrase);
-    setMatchingStudents(students);
+  const getMatchingStudents = debounce(async ({ inputValue }) => {
+    const { students } = await findStudents(inputValue);
+    const highlatedStudents = students.map((student) =>
+      wrapInput(student, inputValue, 'name')
+    );
+    setMatchingStudents(highlatedStudents);
   }, 500);
 
-  useEffect(() => {
-    if (!searchPhrase) return;
-    getMatchingStudents(searchPhrase);
-  }, [searchPhrase, getMatchingStudents]);
+  const {
+    isOpen,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    highlightedIndex,
+    getItemProps,
+  } = useCombobox({
+    items: matchingStudents,
+    onInputValueChange: getMatchingStudents,
+  });
 
   return (
     <SearchBarWrapper>
@@ -32,28 +45,27 @@ export const SearchBar = () => {
           <strong>Teacher</strong>
         </p>
       </StatusInfo>
-      <SearchWrapper>
+      <SearchWrapper {...getComboboxProps()}>
         <Input
+          {...getInputProps()}
           placeholder="find student"
-          onChange={(e) => setSearchPhrase(e.target.value)}
-          value={searchPhrase}
           name="Search"
           id="Search"
         />
-        {searchPhrase && matchingStudents.length ? (
-          <SearchResults>
-            {matchingStudents.map((student) => {
-              const re = new RegExp(searchPhrase, 'gi');
-              const searchingName = student.name.replace(re, '<span>$&</span>');
-              return (
-                <li
-                  key={student.id}
-                  dangerouslySetInnerHTML={{ __html: searchingName }}
-                ></li>
-              );
-            })}
-          </SearchResults>
-        ) : null}
+        <SearchResults
+          isVisible={isOpen && matchingStudents.length > 0}
+          {...getMenuProps()}
+        >
+          {isOpen &&
+            matchingStudents.map((item, index) => (
+              <SearchResultsItem
+                {...getItemProps({ item, index })}
+                isHighlighted={highlightedIndex === index}
+                key={item.id}
+                dangerouslySetInnerHTML={{ __html: item.name }}
+              ></SearchResultsItem>
+            ))}
+        </SearchResults>
       </SearchWrapper>
     </SearchBarWrapper>
   );
