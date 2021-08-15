@@ -13,7 +13,7 @@ import {
   SearchResultsItem,
 } from './SearchBar.styles';
 
-export const SearchBar = () => {
+const SearchBar = () => {
   const [matchingStudents, setMatchingStudents] = useState([]);
   const { findStudents } = useStudents();
 
@@ -55,6 +55,7 @@ export const SearchBar = () => {
         <SearchResults
           isVisible={isOpen && matchingStudents.length > 0}
           {...getMenuProps()}
+          aria-label="results"
         >
           {isOpen &&
             matchingStudents.map((item, index) => (
@@ -70,3 +71,4 @@ export const SearchBar = () => {
     </SearchBarWrapper>
   );
 };
+export default SearchBar;
