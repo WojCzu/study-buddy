@@ -22,6 +22,7 @@ const FormField = ({
   id,
   type = 'text',
   checked,
+  placeholder,
 }) => {
   return (
     <Wrapper>
@@ -33,6 +34,7 @@ const FormField = ({
         value={value}
         checked={checked}
         onChange={onChange}
+        placeholder={placeholder}
       />
     </Wrapper>
   );
@@ -46,6 +48,7 @@ FormField.propTypes = {
   type: PropTypes.string,
   value: PropTypes.string,
   checked: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default FormField;
