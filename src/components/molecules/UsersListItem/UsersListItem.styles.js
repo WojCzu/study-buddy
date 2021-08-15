@@ -60,8 +60,9 @@ export const StyledAverage = styled.div`
 
   background-color: ${({ theme, value }) => {
     const { colors } = theme;
-    if (value < 3) return colors.error;
-    if (value < 4) return colors.warning;
-    return colors.success;
+    if (value >= 4) return colors.success;
+    if (value >= 3) return colors.warning;
+    if (value >= 2) return colors.error;
+    return colors.grey;
   }};
 `;
