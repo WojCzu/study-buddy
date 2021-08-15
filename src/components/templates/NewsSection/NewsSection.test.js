@@ -5,7 +5,7 @@ import axios from 'axios';
 import NewsSection, {
   query,
 } from 'components/templates/NewsSection/NewsSection';
-import { renderWithProviders } from 'helpers/renderWithProviders';
+import { render } from 'test-utils';
 
 const mock = new MockAdapter(axios);
 
@@ -16,7 +16,7 @@ describe('News Section', () => {
 
   it('Displays error when the article are not loaded correctly', async () => {
     mock.onPost('https://graphql.datocms.com/', { query }).reply(500);
-    renderWithProviders(<NewsSection />);
+    render(<NewsSection />);
     await screen.findByText(/Sorry/);
   });
 
@@ -28,13 +28,13 @@ describe('News Section', () => {
         ],
       },
     });
-    renderWithProviders(<NewsSection />);
+    render(<NewsSection />);
     await screen.findAllByText(/Test/);
   });
 
   it('Displays loading text', async () => {
     mock.onPost('https://graphql.datocms.com/', { query }).reply(200);
-    renderWithProviders(<NewsSection />);
+    render(<NewsSection />);
     await screen.findByText('Loading...');
   });
 });
