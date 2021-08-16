@@ -6,6 +6,7 @@ import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import UsersList from 'components/organisms/UsersList/UsersList';
 import UserDetails from 'components/molecules/UserDetails/UserDetails';
 import useModal from 'components/organisms/Modal/useModal';
+import Modal from 'components/organisms/Modal/Modal';
 import {
   Wrapper,
   StyledHeader,
@@ -16,7 +17,7 @@ import {
 const Dashboard = () => {
   const { id } = useParams();
   const { getGroups, getStudentById } = useStudents();
-  const { Modal, isOpen, handleOpenModal, handleCloseModal } = useModal();
+  const { isOpen, handleOpenModal, handleCloseModal } = useModal();
 
   const [groups, setGroups] = useState([]);
   const [currentStudent, setCurrentStudent] = useState(null);
