@@ -27,6 +27,20 @@ const SearchBar = () => {
     setMatchingStudents(highlatedStudents);
   }, 500);
 
+  const stateReducer = (state, action) => {
+    const { type, changes } = action;
+
+    switch (type) {
+      case useCombobox.stateChangeTypes.ItemClick:
+      case useCombobox.stateChangeTypes.InputKeyDownEnter:
+        handleOpenStudentDetails(changes.selectedItem.id);
+        return { ...changes, inputValue: state.inputValue };
+
+      default:
+        return changes;
+    }
+  };
+
   const {
     isOpen,
     getMenuProps,
@@ -34,10 +48,10 @@ const SearchBar = () => {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
-    closeMenu,
   } = useCombobox({
     items: matchingStudents,
     onInputValueChange: getMatchingStudents,
+    stateReducer,
   });
 
   // modal controll
@@ -76,11 +90,6 @@ const SearchBar = () => {
                 {...getItemProps({
                   item,
                   index,
-                  onClick: (e) => {
-                    e.nativeEvent.preventDownshiftDefault = true;
-                    handleOpenStudentDetails(item.id);
-                    closeMenu();
-                  },
                 })}
                 isHighlighted={highlightedIndex === index}
                 key={item.id}
