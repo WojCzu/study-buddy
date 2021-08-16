@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ModalWrapper = styled.div`
   min-width: 600px;
-  min-height: 700px;
+  min-height: 650px;
   padding: 50px;
   padding-bottom: 25px;
 

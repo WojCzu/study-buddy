@@ -7,8 +7,11 @@ import {
   HeaderWrapper,
   ContentWrapper,
   Detail,
-  Grades,
+  DetailLabel,
+  DetailInfo,
+  StyledGrades,
 } from './UserDetails.styles';
+
 const UserDetails = ({ student }) => {
   return (
     <Wrapper>
@@ -19,30 +22,27 @@ const UserDetails = ({ student }) => {
       </HeaderWrapper>
       <ContentWrapper>
         <Detail>
-          <p>Course:</p>
-          <p>Economy and finances</p>
+          <DetailLabel>Course:</DetailLabel>
+          <DetailInfo isBig>Economy and finances</DetailInfo>
         </Detail>
         <Detail>
-          <p>
-            Attendance: <span>{student.attendance}</span>
-          </p>
+          <DetailLabel>Attendance: </DetailLabel>
+          <DetailInfo isInline> {student.attendance}</DetailInfo>
         </Detail>
         <Detail>
-          <p>Average grades:</p>
-          <Grades>
-            <div>
-              <p>Modern Economy</p>
-              <StyledAverage value={2.8}>2.8</StyledAverage>
-            </div>
-            <div>
-              <p>Trade and logistics</p>
-              <StyledAverage value={3.8}>3.8</StyledAverage>
-            </div>
-            <div>
-              <p>Business Philosophy</p>
-              <StyledAverage value={5.0}>5.0</StyledAverage>
-            </div>
-          </Grades>
+          <DetailLabel>Average grades:</DetailLabel>
+          <StyledGrades>
+            <DetailInfo>Modern Economy</DetailInfo>
+            <StyledAverage value={2.8}>2.8</StyledAverage>
+          </StyledGrades>
+          <StyledGrades>
+            <DetailInfo>Trade and logistics</DetailInfo>
+            <StyledAverage value={3.8}>3.8</StyledAverage>
+          </StyledGrades>
+          <StyledGrades>
+            <DetailInfo>Business Philosophy</DetailInfo>
+            <StyledAverage value={5.0}>5.0</StyledAverage>
+          </StyledGrades>
         </Detail>
       </ContentWrapper>
     </Wrapper>
