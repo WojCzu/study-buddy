@@ -20,6 +20,7 @@ export const HeaderWrapper = styled.div`
   }
   ${Title} {
     margin: 0;
+    font-size: ${({ theme }) => theme.fontSize.xxl};
   }
 `;
 export const ContentWrapper = styled.div`

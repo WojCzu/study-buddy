@@ -20,3 +20,19 @@ export const ModalWrapper = styled.div`
   border-radius: 15px;
   box-shadow: 8px -5px 25px -10px rgba(0, 0, 0, 0.3);
 `;
+
+export const ModalBackground = styled.div`
+  ::before {
+    content: '';
+
+    width: 100%;
+    height: 100vh;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    opacity: 0.5;
+    background-color: ${({ theme }) => theme.colors.darkGrey};
+  }
+`;
