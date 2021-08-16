@@ -13,6 +13,7 @@ export const theme = {
     darkPurple: '#DFE2E8',
   },
   fontSize: {
+    xxl: '34px',
     xl: '24px',
     l: '17px',
     m: '12px',

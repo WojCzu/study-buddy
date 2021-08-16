@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.li`
   display: flex;
-  align-items: center;
   position: relative;
+
+  align-items: center;
   padding: 20px 0;
+  cursor: pointer;
 
   &:first-child {
     padding-top: 0;
