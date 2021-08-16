@@ -12,7 +12,14 @@ import {
   StyledGrades,
 } from './UserDetails.styles';
 
-const UserDetails = ({ student }) => {
+const UserDetails = ({
+  student,
+  classes = [
+    { name: 'Modern Economy', average: '2.8' },
+    { name: 'Trade and logistics', average: '3.7' },
+    { name: 'Business Philosophy', average: '4.9' },
+  ],
+}) => {
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -31,18 +38,16 @@ const UserDetails = ({ student }) => {
         </Detail>
         <Detail>
           <DetailLabel>Average grades:</DetailLabel>
-          <StyledGrades>
-            <DetailInfo>Modern Economy</DetailInfo>
-            <StyledAverage value={2.8}>2.8</StyledAverage>
-          </StyledGrades>
-          <StyledGrades>
-            <DetailInfo>Trade and logistics</DetailInfo>
-            <StyledAverage value={3.8}>3.8</StyledAverage>
-          </StyledGrades>
-          <StyledGrades>
-            <DetailInfo>Business Philosophy</DetailInfo>
-            <StyledAverage value={5.0}>5.0</StyledAverage>
-          </StyledGrades>
+          {classes.length ? (
+            classes.map(({ name, average }) => (
+              <StyledGrades key={name}>
+                <DetailInfo>{name}</DetailInfo>
+                <StyledAverage value={average}>{average}</StyledAverage>
+              </StyledGrades>
+            ))
+          ) : (
+            <DetailInfo>There are nothing to show yet </DetailInfo>
+          )}
         </Detail>
       </ContentWrapper>
     </Wrapper>
