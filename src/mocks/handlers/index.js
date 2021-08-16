@@ -7,7 +7,7 @@ export const handlers = [
     return res(ctx.status(200), ctx.json({ groups }));
   }),
 
-  rest.get('/students/:id', (req, res, ctx) => {
+  rest.get('/groups/:id', (req, res, ctx) => {
     if (req.params.id) {
       const matchingStudents = students.filter(
         (student) => student.group === req.params.id
@@ -15,6 +15,28 @@ export const handlers = [
       return res(ctx.status(200), ctx.json({ students: matchingStudents }));
     }
     return res(ctx.status(200), ctx.json({ students }));
+  }),
+
+  rest.get('/students/:id', (req, res, ctx) => {
+    if (req.params.id) {
+      const matchingStudent = students.find(
+        (student) => student.id === req.params.id
+      );
+      if (!matchingStudent) {
+        return res(
+          ctx.status(404),
+          ctx.json({
+            error: 'No matching student',
+          })
+        );
+      }
+      return res(
+        ctx.status(200),
+        ctx.json({
+          students: matchingStudent,
+        })
+      );
+    }
   }),
 
   rest.post('/students/search', (req, res, ctx) => {

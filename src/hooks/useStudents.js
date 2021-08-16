@@ -2,9 +2,9 @@ import { useCallback } from 'react';
 import axios from 'axios';
 
 export const useStudents = () => {
-  const getStudents = useCallback(async (groupId) => {
+  const getStudentsByGroup = useCallback(async (groupId) => {
     try {
-      const result = await axios.get(`/students/${groupId}`);
+      const result = await axios.get(`/groups/${groupId}`);
       return result.data.students;
     } catch (err) {
       console.error(err);
@@ -20,6 +20,15 @@ export const useStudents = () => {
     }
   }, []);
 
+  const getStudentById = useCallback(async (studentId) => {
+    try {
+      const result = await axios.get(`/students/${studentId}`);
+      return result.data.students;
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
   const findStudents = async (searchPhrase) => {
     try {
       const { data } = await axios.post(`/students/search`, {
@@ -30,5 +39,6 @@ export const useStudents = () => {
       console.error(err);
     }
   };
-  return { getStudents, getGroups, findStudents };
+
+  return { getStudentsByGroup, getGroups, findStudents, getStudentById };
 };
