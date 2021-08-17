@@ -16,9 +16,7 @@ const UserDetails = ({ student }) => {
   return (
     <Wrapper>
       <HeaderWrapper>
-        <Average size={'l'} value={student.average}>
-          {student.average}
-        </Average>
+        <Average size={'l'} value={student.average} />
         <Title>{student.name}</Title>
         <DeleteButton />
       </HeaderWrapper>
@@ -29,7 +27,7 @@ const UserDetails = ({ student }) => {
         </Detail>
         <Detail>
           <DetailLabel>Attendance: </DetailLabel>
-          <DetailInfo isInline> {student.attendance}</DetailInfo>
+          <DetailInfo isInline> {student.attendance}%</DetailInfo>
         </Detail>
         <Detail>
           <DetailLabel>Average grades:</DetailLabel>
@@ -37,9 +35,7 @@ const UserDetails = ({ student }) => {
             student.grades.map(({ subject, average }) => (
               <StyledGrades key={subject}>
                 <DetailInfo>{subject}</DetailInfo>
-                <Average size={'m'} value={average}>
-                  {average}
-                </Average>
+                <Average size={'m'} value={average} />
               </StyledGrades>
             ))
           ) : (
