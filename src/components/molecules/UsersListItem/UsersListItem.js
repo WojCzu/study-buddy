@@ -13,13 +13,13 @@ const UsersListItem = ({
   const { deleteUser } = useContext(UsersContext);
   return (
     <Wrapper {...props}>
-      <Average value={average}>{average}</Average>
+      <Average value={average} />
       <StyledInfo>
         <p>
           {name}
           <DeleteButton onClick={() => deleteUser(name)} />
         </p>
-        <p>attendance: {attendance}</p>
+        <p>attendance: {attendance}%</p>
       </StyledInfo>
     </Wrapper>
   );

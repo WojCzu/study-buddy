@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Average = styled.div`
+const StyledAverage = styled.div`
   width: ${({ size }) => {
     switch (size) {
       case 'm':
@@ -49,5 +49,13 @@ const Average = styled.div`
     return colors.grey;
   }};
 `;
+const Average = (props) => {
+  const numberValue = Number.parseFloat(props.value);
 
+  return (
+    <StyledAverage {...props}>
+      {isNaN(numberValue) ? props.value : numberValue.toFixed(1)}
+    </StyledAverage>
+  );
+};
 export default Average;
