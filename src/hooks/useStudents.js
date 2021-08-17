@@ -14,7 +14,7 @@ export const useStudents = () => {
   const getGroups = useCallback(async () => {
     try {
       const result = await axios.get('/groups');
-      return result.data.groups;
+      return result.data.groups.map((group) => group.id);
     } catch (err) {
       console.error(err);
     }

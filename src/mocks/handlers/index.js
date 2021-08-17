@@ -1,10 +1,9 @@
 import { rest } from 'msw';
-import { groups } from 'mocks/data/groups';
 import { db } from 'mocks/db';
 
 export const handlers = [
   rest.get('/groups', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ groups }));
+    return res(ctx.status(200), ctx.json({ groups: db.group.getAll() }));
   }),
 
   rest.get('/groups/:id', (req, res, ctx) => {
