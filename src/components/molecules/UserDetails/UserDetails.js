@@ -1,6 +1,6 @@
 import React from 'react';
 import { Title } from 'components/atoms/Title/Title';
-import { StyledAverage } from 'components/molecules/UsersListItem/UsersListItem.styles';
+import Average from 'components/atoms/Average/Average';
 import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import {
   Wrapper,
@@ -12,25 +12,20 @@ import {
   StyledGrades,
 } from './UserDetails.styles';
 
-const UserDetails = ({
-  student,
-  classes = [
-    { name: 'Modern Economy', average: '2.8' },
-    { name: 'Trade and logistics', average: '3.7' },
-    { name: 'Business Philosophy', average: '4.9' },
-  ],
-}) => {
+const UserDetails = ({ student }) => {
   return (
     <Wrapper>
       <HeaderWrapper>
-        <StyledAverage value={student.average}>{student.average}</StyledAverage>
+        <Average size={'l'} value={student.average}>
+          {student.average}
+        </Average>
         <Title>{student.name}</Title>
         <DeleteButton />
       </HeaderWrapper>
       <ContentWrapper>
         <Detail>
           <DetailLabel>Course:</DetailLabel>
-          <DetailInfo isBig>Economy and finances</DetailInfo>
+          <DetailInfo isBig>{student.course}</DetailInfo>
         </Detail>
         <Detail>
           <DetailLabel>Attendance: </DetailLabel>
@@ -38,11 +33,13 @@ const UserDetails = ({
         </Detail>
         <Detail>
           <DetailLabel>Average grades:</DetailLabel>
-          {classes.length ? (
-            classes.map(({ name, average }) => (
-              <StyledGrades key={name}>
-                <DetailInfo>{name}</DetailInfo>
-                <StyledAverage value={average}>{average}</StyledAverage>
+          {student.grades.length ? (
+            student.grades.map(({ subject, average }) => (
+              <StyledGrades key={subject}>
+                <DetailInfo>{subject}</DetailInfo>
+                <Average size={'m'} value={average}>
+                  {average}
+                </Average>
               </StyledGrades>
             ))
           ) : (

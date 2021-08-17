@@ -47,24 +47,3 @@ export const StyledInfo = styled.div`
     font-size: ${({ theme }) => theme.fontSize.m};
   }
 `;
-
-export const StyledAverage = styled.div`
-  width: 34px;
-  height: 34px;
-
-  display: grid;
-  place-items: center;
-
-  font-size: ${({ theme }) => theme.fontSize.s};
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.white};
-  border-radius: 50%;
-
-  background-color: ${({ theme, value }) => {
-    const { colors } = theme;
-    if (value >= 4) return colors.success;
-    if (value >= 3) return colors.warning;
-    if (value >= 2) return colors.error;
-    return colors.grey;
-  }};
-`;

@@ -1,10 +1,10 @@
 import { Title } from 'components/atoms/Title/Title';
-import { StyledAverage } from 'components/molecules/UsersListItem/UsersListItem.styles';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
 `;
+
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -26,11 +26,6 @@ export const HeaderWrapper = styled.div`
     transform: translateY(25px);
   }
 
-  ${StyledAverage} {
-    width: 68px;
-    height: 68px;
-    font-size: ${({ theme }) => theme.fontSize.xl};
-  }
   ${Title} {
     margin: 0;
     font-size: ${({ theme }) => theme.fontSize.xxl};
@@ -67,10 +62,4 @@ export const StyledGrades = styled.div`
   justify-content: space-between;
   width: 250px;
   margin: 15px 0;
-
-  ${StyledAverage} {
-    width: 40px;
-    height: 40px;
-    font-size: ${({ theme }) => theme.fontSize.m};
-  }
 `;
