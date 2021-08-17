@@ -1,5 +1,4 @@
 import { rest } from 'msw';
-import { students } from 'mocks/data/students';
 import { groups } from 'mocks/data/groups';
 import { db } from 'mocks/db';
 
@@ -50,11 +49,13 @@ export const handlers = [
 
   rest.post('/students/search', (req, res, ctx) => {
     const matchingStudents = req.body.searchPhrase
-      ? students.filter((student) =>
-          student.name
-            .toLowerCase()
-            .includes(req.body.searchPhrase.toLowerCase())
-        )
+      ? db.student
+          .getAll()
+          .filter((student) =>
+            student.name
+              .toLowerCase()
+              .includes(req.body.searchPhrase.toLowerCase())
+          )
       : [];
     return res(
       ctx.status(200),

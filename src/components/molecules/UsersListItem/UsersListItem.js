@@ -13,7 +13,6 @@ const UsersListItem = ({
   const { deleteUser } = useContext(UsersContext);
   return (
     <Wrapper {...props}>
-      {/* <Average value={average}>{average}</Average> */}
       <Average value={average} />
       <StyledInfo>
         <p>
