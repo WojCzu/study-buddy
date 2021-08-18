@@ -14,7 +14,7 @@ const Navigation = () => {
       <StyledLink exact to="/settings">
         Settings
       </StyledLink>
-      <StyledLink exact to="/logout">
+      <StyledLink as="a" onClick={() => localStorage.removeItem('token')}>
         Logout
       </StyledLink>
     </StyledNav>
