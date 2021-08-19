@@ -14,6 +14,10 @@ html{
 body, a, button{
     font-family: 'Montserrat', sans-serif;
 }
+body{
+    margin: 0;
+    padding: 0;
+}
 `;
 
 export default GlobalStyle;
