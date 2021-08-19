@@ -45,7 +45,7 @@ const StyledAverage = styled.div`
     const { colors } = theme;
     if (value >= 4) return colors.success;
     if (value >= 3) return colors.warning;
-    if (value >= 2) return colors.error;
+    if (value >= 2) return colors.badGrade;
     return colors.grey;
   }};
 `;
