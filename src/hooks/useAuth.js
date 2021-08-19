@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useError } from 'hooks/useError';
 import axios from 'axios';
 
 const AuthContext = React.createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const { dispatchError } = useError();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -25,7 +27,6 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const signIn = async ({ login, password }) => {
-    console.log(login, password);
     try {
       const response = await axios.post('/login', {
         login,
@@ -34,7 +35,7 @@ export const AuthProvider = ({ children }) => {
       setUser(response.data);
       localStorage.setItem('token', response.data.token);
     } catch (e) {
-      console.log(e);
+      dispatchError('Invalid email or password');
     }
   };
 
