@@ -27,6 +27,7 @@ const AuthenticatedApp = () => {
 
 const UnauthenticatedApp = () => {
   const auth = useAuth();
+
   const {
     register,
     handleSubmit,

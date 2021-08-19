@@ -6,6 +6,7 @@ import {
 } from 'components/organisms/Modal/Modal.styles';
 import { Button } from 'components/atoms/Button/Button';
 import { handleClickOutsideComponent } from 'helpers/handleClickOutsideComponent';
+
 const modalContainer = document.getElementById('modal-container');
 
 const Modal = ({ handleClose, children }) => {
