@@ -4,13 +4,24 @@ const ErrorContext = React.createContext({});
 
 export const ErrorProvider = ({ children }) => {
   const [error, setError] = useState(null);
+  const [isErrorMessageClearing, setIsErrorMessageClearing] = useState(false);
+  const dispatchError = useCallback(
+    (message) => {
+      setError(message);
 
-  const dispatchError = useCallback((message) => {
-    setError(message);
-    setTimeout(() => {
-      setError('');
-    }, 7400);
-  }, []);
+      const clearError = () => {
+        setIsErrorMessageClearing(true);
+        setTimeout(() => {
+          setError('');
+          setIsErrorMessageClearing(false);
+        }, 7400);
+      };
+      if (!isErrorMessageClearing) {
+        clearError();
+      }
+    },
+    [isErrorMessageClearing]
+  );
 
   return (
     <ErrorContext.Provider value={{ error, dispatchError }}>
