@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyledNav, Logo, StyledLink } from './Navigation.styles';
+import { useAuth } from 'hooks/useAuth';
 
 const Navigation = () => {
+  const auth = useAuth();
+
   return (
     <StyledNav>
       <Logo>
@@ -14,7 +17,7 @@ const Navigation = () => {
       <StyledLink exact to="/settings">
         Settings
       </StyledLink>
-      <StyledLink exact to="/logout">
+      <StyledLink as="a" onClick={auth.signOut}>
         Logout
       </StyledLink>
     </StyledNav>

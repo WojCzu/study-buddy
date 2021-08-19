@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { Label } from 'components/atoms/Label/Label';
 import { Input } from 'components/atoms/Input/Input';
@@ -14,31 +14,24 @@ const Wrapper = styled.div`
   }
 `;
 
-const FormField = ({
-  onChange,
-  value,
-  label,
-  name,
-  id,
-  type = 'text',
-  checked,
-  placeholder,
-}) => {
-  return (
-    <Wrapper>
-      <Label htmlFor={id}>{label}</Label>
-      <Input
-        name={name}
-        id={id}
-        type={type}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        placeholder={placeholder}
-      />
-    </Wrapper>
-  );
-};
+const FormField = forwardRef(
+  ({ onChange, value, label, name, id, type = 'text', ...props }, ref) => {
+    return (
+      <Wrapper>
+        <Label htmlFor={id}>{label}</Label>
+        <Input
+          name={name}
+          id={id}
+          type={type}
+          value={value}
+          onChange={onChange}
+          {...props}
+          ref={ref}
+        />
+      </Wrapper>
+    );
+  }
+);
 
 FormField.propTypes = {
   label: PropTypes.string.isRequired,

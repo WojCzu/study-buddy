@@ -4,7 +4,7 @@ import { useCombobox } from 'downshift';
 import { Input } from 'components/atoms/Input/Input';
 import { useStudents } from 'hooks/useStudents';
 import { wrapInput } from 'helpers/wrapInput';
-import useModal from 'components/organisms/Modal/useModal';
+import useModal from 'hooks/useModal';
 import Modal from 'components/organisms/Modal/Modal';
 import UserDetails from 'components/molecules/UserDetails/UserDetails';
 import {
