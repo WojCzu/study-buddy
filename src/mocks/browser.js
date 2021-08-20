@@ -14,7 +14,11 @@ const seed = () => {
   db.group.create({
     id: 'C',
   });
+
   db.teacher.create();
+
+  db.note.create();
+  db.note.create();
   for (let i = 0; i < 15; i++) {
     db.student.create();
   }
