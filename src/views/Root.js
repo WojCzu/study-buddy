@@ -6,6 +6,7 @@ import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import FormField from 'components/molecules/FormField/FormField';
 import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
 import { Button } from 'components/atoms/Button/Button';
+import Notes from 'views/Notes';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
 import { useError } from 'hooks/useError';
@@ -20,6 +21,9 @@ const AuthenticatedApp = () => {
           </Route>
           <Route path="/group/:id?">
             <Dashboard />
+          </Route>
+          <Route path="/notes">
+            <Notes />
           </Route>
         </Switch>
       </Wrapper>

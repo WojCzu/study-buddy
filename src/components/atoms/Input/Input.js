@@ -6,10 +6,11 @@ export const Input = styled.input`
   padding: 0.4em 0.6em;
 
   border: 1px solid ${({ theme }) => theme.colors.lightPurple};
-  border-radius: 1.5em;
+  border-radius: ${({ isTextarea }) => (isTextarea ? '15px' : '25px')};
   box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
   color: ${({ theme }) => theme.colors.darkGrey};
   font-size: ${({ theme }) => theme.fontSize.l};
+  resize: none;
 
   &:focus {
     outline: none;
