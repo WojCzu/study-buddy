@@ -22,7 +22,7 @@ const NotesWidget = () => {
             <Note id={id} key={id} title={title} content={content} />
           ))
         ) : (
-          <p>Create your first note</p>
+          <p>There are no notes to show</p>
         )}
       </NotesWrapper>
     </Wrapper>

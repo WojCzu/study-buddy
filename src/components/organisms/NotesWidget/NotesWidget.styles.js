@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
   transform: ${({ isOpen }) =>
     isOpen ? 'translateX(0)' : 'translateX(400px)'};
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.4s ease-in-out;
   background: ${({ theme }) => theme.colors.white};
   border: 2px solid ${({ theme }) => theme.colors.darkGrey};
   border-radius: 16px 0 0 16px;

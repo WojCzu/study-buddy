@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   padding: 30px;
 `;
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   width: 100%;
   height: fit-content;
   padding: 40px 40px 10px;
@@ -36,7 +36,7 @@ export const StyledFormField = styled(FormField)`
 `;
 
 export const NotesWrapper = styled.div`
-  padding: 20px 60px;
+  padding: 20px 0 20px 60px;
 
   display: flex;
   flex-direction: column;

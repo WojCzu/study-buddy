@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from 'components/atoms/Button/Button';
 import Note from 'components/molecules/Note/Note';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { addNote } from 'store';
 import {
   FormWrapper,
@@ -14,26 +15,43 @@ const Notes = () => {
   const notes = useSelector((state) => state.notes);
   const dispatch = useDispatch();
 
-  const handleAddNote = () => {
-    dispatch(
-      addNote({
-        title: `New Note ${Math.floor(Math.random() * 10)}`,
-        content: 'Lorem ipsum dolor sit amet',
-      })
-    );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+    reset,
+  } = useForm();
+
+  const handleAddNote = ({ title, content }) => {
+    dispatch(addNote({ title, content }));
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) reset();
+  }, [isSubmitSuccessful, reset]);
 
   return (
     <Wrapper>
-      <FormWrapper>
-        <StyledFormField label="Title" name="title" id="title" />
+      <FormWrapper onSubmit={handleSubmit(handleAddNote)}>
+        <StyledFormField
+          label="Title"
+          name="title"
+          id="title"
+          autoComplete="off"
+          {...register('title', { required: true })}
+        />
+        {errors.title && <span>Title is required</span>}
+
         <StyledFormField
           isTextarea
           label="Content"
           name="content"
           id="content"
+          {...register('content', { required: true })}
         />
-        <Button onClick={handleAddNote}>Add</Button>
+        {errors.content && <span>Content is required</span>}
+
+        <Button type="submit">Add</Button>
       </FormWrapper>
       <NotesWrapper>
         {notes.length ? (
@@ -41,7 +59,7 @@ const Notes = () => {
             <Note id={id} key={id} title={title} content={content} />
           ))
         ) : (
-          <p>Create your first note</p>
+          <p>There are no notes to show</p>
         )}
       </NotesWrapper>
     </Wrapper>
