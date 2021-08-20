@@ -11,12 +11,8 @@ const Navigation = () => {
         <h1>Study Buddy</h1>
       </Logo>
       <StyledLink to="/group">Dashboard</StyledLink>
-      <StyledLink exact to="/add-user">
-        Add user
-      </StyledLink>
-      <StyledLink exact to="/settings">
-        Settings
-      </StyledLink>
+      <StyledLink to="/notes">Notes</StyledLink>
+      <StyledLink to="/settings">Settings</StyledLink>
       <StyledLink as="a" onClick={auth.signOut}>
         Logout
       </StyledLink>
