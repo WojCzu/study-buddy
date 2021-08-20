@@ -4,13 +4,20 @@ import {
   NoteWrapper,
   StyledDeleteButton,
 } from 'components/molecules/Note/Note.styles';
+import { useRemoveNoteMutation } from 'store';
 
 const Note = ({ title = 'Untitled', content = 'No content', id }) => {
+  const [removeNote] = useRemoveNoteMutation();
+
+  const handleRemoveNote = () => {
+    removeNote({ id: id });
+  };
+
   return (
     <NoteWrapper>
       <Title>{title}</Title>
       <p>{content}</p>
-      <StyledDeleteButton onClick={() => console.log('d')} />
+      <StyledDeleteButton onClick={handleRemoveNote} />
     </NoteWrapper>
   );
 };
