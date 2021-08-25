@@ -1,75 +1,9 @@
 import React from 'react';
-import { Wrapper } from './Root.styles';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import Dashboard from './Dashboard';
-import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
-import FormField from 'components/molecules/FormField/FormField';
 import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
-import { Button } from 'components/atoms/Button/Button';
-import Notes from 'views/Notes';
-import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
 import { useError } from 'hooks/useError';
-
-const AuthenticatedApp = () => {
-  return (
-    <MainTemplate>
-      <Wrapper>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/group" />
-          </Route>
-          <Route path="/group/:id?">
-            <Dashboard />
-          </Route>
-          <Route path="/notes">
-            <Notes />
-          </Route>
-        </Switch>
-      </Wrapper>
-    </MainTemplate>
-  );
-};
-
-const UnauthenticatedApp = () => {
-  const auth = useAuth();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  return (
-    <form
-      onSubmit={handleSubmit(auth.signIn)}
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
-      <FormField
-        label="login"
-        name="login"
-        id="login"
-        {...register('login', { required: true })}
-      />
-      {errors.login && <span>Login is required</span>}
-      <FormField
-        label="password"
-        name="password"
-        id="password"
-        type="password"
-        {...register('password', { required: true })}
-      />
-      {errors.password && <span>Password is required</span>}
-      <Button type="submit">Sign in</Button>
-    </form>
-  );
-};
+import AuthenticatedApp from './AuthenticatedApp';
+import UnauthenticatedApp from './UnauthenticatedApp';
 
 const Root = () => {
   const auth = useAuth();
