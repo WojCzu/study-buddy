@@ -19,6 +19,7 @@ const SearchBar = () => {
   const [matchingStudents, setMatchingStudents] = useState([]);
   const [getStudentById] = useGetStudentByIdMutation();
   const [findStudents] = useFindStudentsMutation();
+
   const getMatchingStudents = debounce(async ({ inputValue }) => {
     const { data } = await findStudents({ searchPhrase: inputValue });
     const highlatedStudents = data.students.map((student) =>

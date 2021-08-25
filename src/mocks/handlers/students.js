@@ -36,13 +36,18 @@ export const students = [
   }),
 
   rest.post('/students/search', (req, res, ctx) => {
-    const matchingStudents = db.student.findMany({
-      where: {
-        name: {
-          contains: req.body.searchPhrase,
-        },
-      },
-    });
+    if (!req.body.searchPhrase) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          students: [],
+        })
+      );
+    }
+    const re = new RegExp(req.body.searchPhrase, 'i');
+    const matchingStudents = db.student
+      .getAll()
+      .filter(({ name }) => name.match(re));
     return res(
       ctx.status(200),
       ctx.json({
