@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useCombobox } from 'downshift';
 import { Input } from 'components/atoms/Input/Input';
-import { useStudents } from 'hooks/useStudents';
 import { wrapInput } from 'helpers/wrapInput';
 import useModal from 'hooks/useModal';
 import Modal from 'components/organisms/Modal/Modal';
 import UserDetails from 'components/molecules/UserDetails/UserDetails';
+import { useFindStudentsMutation, useGetStudentByIdMutation } from 'store';
 import {
   SearchBarWrapper,
   SearchResults,
@@ -17,11 +17,11 @@ import {
 
 const SearchBar = () => {
   const [matchingStudents, setMatchingStudents] = useState([]);
-  const { findStudents, getStudentById } = useStudents();
-
+  const [getStudentById] = useGetStudentByIdMutation();
+  const [findStudents] = useFindStudentsMutation();
   const getMatchingStudents = debounce(async ({ inputValue }) => {
-    const { students } = await findStudents(inputValue);
-    const highlatedStudents = students.map((student) =>
+    const { data } = await findStudents({ searchPhrase: inputValue });
+    const highlatedStudents = data.students.map((student) =>
       wrapInput(student, inputValue, 'name')
     );
     setMatchingStudents(highlatedStudents);
@@ -58,8 +58,8 @@ const SearchBar = () => {
   const { isOpen: isModalOpen, handleOpenModal, handleCloseModal } = useModal();
   const [currentStudent, setCurrentStudent] = useState(null);
   const handleOpenStudentDetails = async (id) => {
-    const student = await getStudentById(id);
-    setCurrentStudent(student);
+    const { data } = await getStudentById(id);
+    setCurrentStudent(data.students);
     handleOpenModal();
   };
   //end modal controll

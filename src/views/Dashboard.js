@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { useStudents } from 'hooks/useStudents';
 import { Title } from 'components/atoms/Title/Title';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import UsersList from 'components/organisms/UsersList/UsersList';
 import UserDetails from 'components/molecules/UserDetails/UserDetails';
 import useModal from 'hooks/useModal';
 import Modal from 'components/organisms/Modal/Modal';
+import { useGetGroupsQuery, useGetStudentByIdMutation } from 'store';
 import {
   Wrapper,
   StyledHeader,
@@ -16,35 +16,37 @@ import {
 
 const Dashboard = () => {
   const { id } = useParams();
-  const { getGroups, getStudentById } = useStudents();
   const { isOpen, handleOpenModal, handleCloseModal } = useModal();
-
-  const [groups, setGroups] = useState([]);
   const [currentStudent, setCurrentStudent] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const groups = await getGroups();
-      setGroups(groups);
-    })();
-  }, [getGroups]);
+  const { data, isLoading } = useGetGroupsQuery();
+  const [getStudentById] = useGetStudentByIdMutation();
 
   const handleOpenStudentDetails = async (id) => {
-    const student = await getStudentById(id);
-    setCurrentStudent(student);
+    const { data } = await getStudentById(id);
+    setCurrentStudent(data.students);
     handleOpenModal();
   };
 
-  if (!id && groups.length > 0) return <Redirect to={`/group/${groups[0]}`} />;
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <Title>Loading...</Title>
+      </Wrapper>
+    );
+  }
+
+  if (!id && data.groups.length > 0) {
+    return <Redirect to={`/group/${data.groups[0].id}`} />;
+  }
   return (
     <Wrapper>
       <StyledHeader>
         <Title>{`Group ${id}`}</Title>
         <nav>
-          {groups.length
-            ? groups.map((group) => (
-                <StyledLink key={group} to={`/group/${group}`}>
-                  {group}
+          {data.groups.length
+            ? data.groups.map(({ id }) => (
+                <StyledLink key={id} to={`/group/${id}`}>
+                  {id}
                 </StyledLink>
               ))
             : null}
